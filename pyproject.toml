@@ -1,0 +1,20 @@
+[project]
+authors = [{name = "rz", email = "royzou.rz@gmail.com"}]
+dependencies = []
+description = "Common utils referenced by other projects"
+name = "pyutils"
+requires-python = ">= 3.11"
+version = "0.1.0"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["linux-aarch64"]
+
+[tool.pixi.pypi-dependencies]
+pyutils = { path = ".", editable = true }
+
+[tool.pixi.tasks]

@@ -29,7 +29,7 @@ def init_args(des: "description", ops: "options dict"):
   return wrapped
 
 
-def try_catch(call_back):
+def try_catch(err_handler):
   """Catch exceptions"""
   def wrapped(func):
     @functools.wraps(func)
@@ -37,7 +37,6 @@ def try_catch(call_back):
       try:
         func(*args, **kwargs)
       except Exception as e:
-        call_back(repr(e))
-        call_back(traceback.format_exc())
+        err_handler(e)
     return wrapper
   return wrapped

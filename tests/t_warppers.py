@@ -18,7 +18,7 @@ _options={
 }
 
 def assert_check(x):
-  assert _description in x
+  assert _description in repr(x)
 
 @pyu.try_catch(assert_check)
 @pyu.init_args(

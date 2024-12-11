@@ -1,12 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding:utf-8 -*-
-
 import argparse
 import functools
-import traceback
 
 
-def init_args(des: "description", ops: "options dict"):
+def init_args(des: str, ops: dict):
   """Init commandline arguments"""
   def wrapped(func):
     @functools.wraps(func)

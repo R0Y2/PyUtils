@@ -1,14 +1,11 @@
-#!/usr/bin/env python3
-# -*- coding:utf-8 -*-
-
-import pyutils as pyu
+from py_utils.wrappers import try_catch, init_args
 
 _description = "PyUtils Test"
 _options={
   'test_option':{
     'long': '--test_option',
     'short':'-t',
-    'default': 'test.option'
+    'default': 'test.exception' #'test.option'
   },
   'out_file':{
     'long':'--outfile',
@@ -20,14 +17,21 @@ _options={
 def assert_check(x):
   assert _description in repr(x)
 
-@pyu.try_catch(assert_check)
-@pyu.init_args(
+def raise_except(e: Exception):
+  raise(e)
+
+#@try_catch(assert_check)
+@try_catch(raise_except)
+@init_args(
   _description,
   _options
 )
 def main(parsed_args=None):
-  if parsed_args.test_option == "exception":
+  if parsed_args.test_option == "test.exception":
     raise Exception(_description) 
 
 if __name__ == '__main__':
-  main()
+  try:
+    main()
+  except Exception as e:
+    assert_check(e)
